@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+<!--  -->
+{% block styles %} {% endblock %}
+
+<!--  -->
+{% block page_content %}
+<div class="paper">
+    <form action="/action/plant/edit/{{record.sn}}" method="post">
+        课程：<select name="cou_sn">
+            {% for item in courses %}
+                <option {% if item.cou_sn == record.cou_sn %}selected{% endif %} value="{{item.cou_sn}}">
+                    {{item.cou_name}}({{item.cou_sn}})
+                </option>
+            {% endfor %}
+        </select>
+        学期：<input type="text" name="semester" value="{{record.semester}}" />
+        时间：<input type="text" name="class_time" value="{{record.class_time}}" />
+        周次：<input type="text" name="week" value="{{record.week}}" />
+        地点：<input type="text" name="class_position" value="{{record.class_position}}" />
+        <input type="submit" value="修改" />
+    </form>
+    <hr />
+    <a href="/plant"> 回到课程计划列表 </a>
+</div>
+{% endblock %}

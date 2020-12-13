@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block styles %}
+<link href="/grade_list.css" rel="stylesheet" />
+{% endblock %} {% block page_content %}
+<div class="paper">
+    <form class="grade-form" action="/action/plant/add" method="post">
+        <label>课程：</label>
+        <select name="cou_sn">
+            <option value="">--选择--</option>
+            {% for item in courses %}
+            <option value="{{item.cou_sn}}">
+                {{item.cou_name}}({{item.cou_sn}})
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>学期：</label>
+        <input type="text" name="semester" />
+
+        <label>周次</label>
+        <input type="text" name="week" />
+
+        <label>时间：</label>
+        <input type="text" name="class_time" />
+
+        <label>地点</label>
+        <input type="text" name="class_position" />
+
+        <input type="submit" value="添加课程计划" />
+    </form>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>课程号</th>
+                <th>课程名</th>
+                <th>课程学分</th>
+                <th>课程属性</th>
+                <th>学期</th>
+                <th>时间</th>
+                <th>周次</th>
+                <th>地点</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.cou_no }}</td>
+                <td>{{ item.cou_name}}</td>
+                <td>{{ item.cou_score}}</td>
+                <td>{{ item.cou_attr}}</td>
+                <td>{{ item.semester }}</td>
+                <td>{{ item.class_time }}</td>
+                <td>{{ item.week }}</td>
+                <td>{{ item.class_position }}</td>
+                <td>
+                    <div class="ctrlbar">
+                        <div class="btn">
+                            <a
+                                href="/plant/edit/{{item.sn}}"
+                            >
+                                修改
+                            </a>
+                        </div>
+                        <div class="btn">
+                            <a
+                                href="/plant/delete/{{item.sn}}"
+                            >
+                                删除
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block styles %}
+<link href="/grade_list.css" rel="stylesheet" />
+{% endblock %} {% block page_content %}
+<div class="paper">
+    <form class="grade-form" action="/action/course/add" method="post">
+        <label>课程号：</label>
+        <input type="text" name="no" />
+
+        <label>课程名：</label>
+        <input type="text" name="name" />
+
+        <label>学分：</label>
+        <input type="text" name="score" />
+
+        <label>属性：</label>
+        <input type="text" name="attr" />
+
+        <input type="submit" value="添加课程" />
+    </form>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>课程号</th>
+                <th>课程名</th>
+                <th>课程学分</th>
+                <th>课程属性</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.cou_no }}</td>
+                <td>{{ item.cou_name}}</td>
+                <td>{{ item.cou_score}}</td>
+                <td>{{ item.cou_attr}}</td>
+                <td>
+                    <div class="ctrlbar">
+                        <div class="btn">
+                            <a
+                                href="/course/edit/{{item.cou_sn}}"
+                            >
+                                修改
+                            </a>
+                        </div>
+                        <div class="btn">
+                            <a
+                                href="/course/delete/{{item.cou_sn}}"
+                            >
+                                删除
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+<!--  -->
+{% block styles %} {% endblock %}
+
+<!--  -->
+{% block page_content %}
+<div class="paper">
+    <form action="/action/course/edit/{{record.cou_sn}}" method="post">
+        课程号：<input type="text" name="no" value="{{record.cou_no}}" />
+        课程名：<input type="text" name="name" value="{{record.cou_name}}" />
+        学分：<input type="text" name="score" value="{{record.cou_score}}" />
+        属性：<input type="text" name="attr" value="{{record.cou_attr}}" />
+        <input type="submit" value="修改" />
+    </form>
+    <hr />
+    <a href="/course"> 回到课程列表 </a>
+</div>
+{% endblock %}
